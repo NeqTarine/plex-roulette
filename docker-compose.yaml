@@ -1,0 +1,9 @@
+---
+version: "2.1"
+services:
+  sonarr:
+    image: plex-roulette-image
+    container_name: plex-roulette
+    ports:
+      - 8695:3000
+    restart: unless-stopped
