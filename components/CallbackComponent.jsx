@@ -14,7 +14,7 @@ const data = [
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
-    { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
+    { option: '0', style: { backgroundColor: '#aed6dc', textColor: '#aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: '#aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
@@ -59,7 +59,7 @@ const styles = `
     z-index: 1000;
   }
 
-.genre-box {
+  .genre-box {
     display: inline-block;
     background-color: #e0e0e0;
     color: #333;
@@ -67,9 +67,9 @@ const styles = `
     border-radius: 5px;
     margin: 5px;
     font-size: 0.9em;
-}
+  }
 
-.duration-box {
+  .duration-box {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.5);
     color: #333;
@@ -77,7 +77,50 @@ const styles = `
     border-radius: 5px;
     margin: 5px;
     font-size: 0.9em;
-}
+  }
+
+  .parent-container {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .parent-container > div {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .parent-container {
+        max-width: 200px;
+    }
+    .genre-box, .duration-box {
+        font-size: 0.7em;
+        padding: 3px 7px;
+        margin: 3px;
+    }
+    img {
+        width: 75%;
+    }
+    button {
+        font-size: 0.8em;
+    }
+    .text-4xl {
+        font-size: 2.5rem;
+    }
+    .text-6xl {
+        font-size: 3rem;
+    }
+  }
 `;
 
 const CallbackComponent = () => {
@@ -411,9 +454,9 @@ const CallbackComponent = () => {
                     </div>
     
                     <div className="flex flex-col md:flex-row mt-10 justify-around space-y-10 md:space-y-0">
-                        <div className="relative flex justify-center items-center w-full md:w-1/3 md:mr-10">
+                        <div className="relative flex justify-center items-center w-full md:w-1/3 md:mr-10 ">
                             {showSpinButton && (
-                                <div id="spin" className="relative">
+                                <div id="spin" className="parent-container relative">
                                     <Wheel
                                         mustStartSpinning={mustSpin}
                                         spinDuration={0.1}
@@ -445,15 +488,17 @@ const CallbackComponent = () => {
                                             <span key={index} className="genre-box">{genre}</span>
                                         ))}
                                     </div>
-                                    <p className="leading-relaxed mt-10">
+                                    <p className="leading-relaxed mt-5">
                                         {showFullSummary ? selectedMovie.summary : `${selectedMovie.summary.slice(0, 300)}...`}
                                         <button onClick={toggleSummary} className="text-blue-500 ml-2">
                                             {showFullSummary ? 'Lire moins' : 'Lire plus'}
                                         </button>
                                     </p>
-                                    <p className="leading-relaxed mt-10">Release date: {selectedMovie.year}</p>
                                     <div className="flex flex-wrap justify-center md:justify-start mt-4">
-                                        <span className="duration-box">{selectedMovie.duration}</span>
+                                        <span className="duration-box">Year: {selectedMovie.year}</span>
+                                    </div>
+                                    <div className="flex flex-wrap justify-center md:justify-start mt-2">
+                                        <span className="duration-box">Time: {selectedMovie.duration}</span>
                                     </div>
                                 </div>
                             )}
