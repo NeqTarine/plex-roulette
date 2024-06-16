@@ -12,7 +12,7 @@ const data = [
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: '#aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
-    { option: '0', style: { backgroundColor: '#aed6dc', textColor: '#aed6dc'} },
+    { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
@@ -85,8 +85,8 @@ const CallbackComponent = () => {
     const [servers, setServers] = useState([]);
     const [libraries, setLibraries] = useState([]);
     const [genres, setGenres] = useState([]);
-    const [selectedServer, setSelectedServer] = useState('');
-    const [selectedLibraryKey, setSelectedLibraryKey] = useState('');
+    const [selectedServer, setSelectedServer] = useState(null);
+    const [selectedLibraryKey, setSelectedLibraryKey] = useState(null);
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [selectedMovies, setSelectedMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
@@ -300,7 +300,7 @@ const CallbackComponent = () => {
 
     const handleServerChange = (selectedOption) => {
         const selectedServer = servers.find(server => server.name === selectedOption.value);
-        setSelectedServer(selectedServer.name);
+        setSelectedServer(selectedServer);
         fetchLibraries(selectedServer);
     };
 
@@ -377,6 +377,7 @@ const CallbackComponent = () => {
                             {servers.length > 0 ? (
                                 <Select
                                     options={servers.map(server => ({ value: server.name, label: server.name }))}
+                                    value={selectedServer ? { value: selectedServer.name, label: selectedServer.name } : null}
                                     onChange={handleServerChange}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
                                 />
@@ -389,6 +390,7 @@ const CallbackComponent = () => {
                                 <label className="mb-2">Now, chose your library</label>
                                 <Select
                                     options={libraries.map(library => ({ value: library.key, label: library.title }))}
+                                    value={selectedLibraryKey ? { value: selectedLibraryKey, label: libraries.find(lib => lib.key === selectedLibraryKey).title } : null}
                                     onChange={handleLibraryChange}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
                                 />
