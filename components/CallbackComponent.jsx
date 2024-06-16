@@ -99,9 +99,19 @@ const styles = `
     align-items: center;
   }
 
+  .spin-button {
+    width: 100px;
+    height: 100px;
+  }
+
   @media (max-width: 768px) {
     .parent-container {
         max-width: 200px;
+    }
+    .spin-button {
+        width: 50px;
+        height: 50px;
+        font-size: 0.6em;
     }
     .genre-box, .duration-box {
         font-size: 0.7em;
@@ -109,7 +119,7 @@ const styles = `
         margin: 3px;
     }
     img {
-        width: 75%;
+        width: 50%;
     }
     button {
         font-size: 0.8em;
@@ -119,6 +129,18 @@ const styles = `
     }
     .text-6xl {
         font-size: 3rem;
+    }
+    .space-y-10 > * + * {
+        margin-top: 0.5rem;
+    }
+    .space-y-5 > * + * {
+        margin-top: 0.5rem;
+    }
+    .space-x-10 > * + * {
+        margin-left: 0.5rem;
+    }
+    .space-x-5 > * + * {
+        margin-left: 0.25rem;
     }
   }
 `;
@@ -387,7 +409,7 @@ const CallbackComponent = () => {
     return (
         <main className="p-4 font-poppins">
             <style>{styles}</style>
-            <div className="flex flex-col md:flex-row justify-around items-center w-full">
+            <div className="flex flex-col md:flex-row justify-around items-center w-full space-y-5 md:space-y-0">
                 <div className="py-4">
                     <Image src={logov2} alt="Logo" width={150} height={150} />
                 </div>
@@ -472,7 +494,7 @@ const CallbackComponent = () => {
                                         perpendicularText={true}
                                         onStopSpinning={handleStopSpinning}
                                     />
-                                    <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-white border-4 border-animation text-black flex items-center justify-center" onClick={handleSpinClick}>
+                                    <button className="spin-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-4 border-animation text-black flex items-center justify-center" onClick={handleSpinClick}>
                                         Click Here to Spin
                                     </button>
                                 </div>
