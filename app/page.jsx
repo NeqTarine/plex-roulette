@@ -34,7 +34,7 @@ export default function Home() {
   const storePinAndRedirect = (pin, clientID) => {
       localStorage.setItem('plex_pin_id', pin.id);
       localStorage.setItem('plex_pin_code', pin.code);
-      const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=https://plex-roulette.com/callback`;
+      const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=http://localhost:3000/callback`;
       window.location.href = redirectUrl;
   }
 
