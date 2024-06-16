@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Wheel } from 'react-custom-roulette';
 import Image from "next/image";
+import Select from 'react-select';
 import imdblogo from "/public/imdb.png";
 import rottenlogo from "/public/rotten.png";
 import logov2 from "/public/logov2.webp";
@@ -25,8 +26,10 @@ const CallbackComponent = () => {
     const [authToken, setAuthToken] = useState(null);
     const [servers, setServers] = useState([]);
     const [libraries, setLibraries] = useState([]);
+    const [genres, setGenres] = useState([]);
     const [selectedServer, setSelectedServer] = useState('');
     const [selectedLibraryKey, setSelectedLibraryKey] = useState('');
+    const [selectedGenres, setSelectedGenres] = useState([]);
     const [selectedMovies, setSelectedMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [showSpinButton, setShowSpinButton] = useState(false);
@@ -131,14 +134,43 @@ const CallbackComponent = () => {
         }
     };
 
-    const fetchMovies = async (libraryKey) => {
+    const fetchGenres = async () => {
+        const serverAddress = localStorage.getItem('plex_server_address');
+        const serverPort = localStorage.getItem('plex_server_port');
+        const accessToken = localStorage.getItem('plex_access_Token');
+
+        try {
+            const response = await fetch(`https://${serverAddress}-${serverPort}.plex-roulette.com/library/sections/1/genre`, {
+                method: 'GET',
+                headers: {
+                    'X-Plex-Token': accessToken,
+                    'Accept': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            setGenres(data.MediaContainer.Directory);
+        } catch (error) {
+            console.error('Error fetching genres:', error);
+        }
+    };
+
+    const fetchMovies = async (libraryKey, genreKeys = []) => {
         if (typeof window !== 'undefined') {
             const serverAddress = localStorage.getItem('plex_server_address');
             const serverPort = localStorage.getItem('plex_server_port');
             const accessToken = localStorage.getItem('plex_access_Token');
 
+            let url = `https://${serverAddress}-${serverPort}.plex-roulette.com/library/sections/${libraryKey}/unwatched`;
+            if (genreKeys.length > 0) {
+                const genreQuery = genreKeys.map(key => `genre=${key}`).join('&');
+                url += `?${genreQuery}`;
+            }
+
             try {
-                const response = await fetch(`https://${serverAddress}-${serverPort}.plex-roulette.com/library/sections/${libraryKey}/unwatched`, {
+                const response = await fetch(url, {
                     method: 'GET',
                     headers: {
                         'X-Plex-Token': accessToken,
@@ -193,7 +225,14 @@ const CallbackComponent = () => {
     const handleLibraryChange = (event) => {
         const libraryKey = event.target.value;
         setSelectedLibraryKey(libraryKey);
-        fetchMovies(libraryKey);
+        fetchGenres();
+        fetchMovies(libraryKey, selectedGenres);
+    };
+
+    const handleGenreChange = (selectedOptions) => {
+        const selectedKeys = selectedOptions ? selectedOptions.map(option => option.value) : [];
+        setSelectedGenres(selectedKeys);
+        fetchMovies(selectedLibraryKey, selectedKeys);
     };
 
     const handleSpinClick = () => {
@@ -227,12 +266,12 @@ const CallbackComponent = () => {
                 <div className="py-4">
                     <Image src={logov2} alt="Logo" width={150} height={150} />
                 </div>
-
+    
                 {/* Title en haut au centre */}
                 <div className="py-12 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent font-black text-4xl md:text-6xl text-center">
                     Plex Roulette
                 </div>
-
+    
                 {/* Logout en haut à droite */}
                 <div className="py-10">
                     <button onClick={handleLogout} className="border border-red-500 p-3 rounded hover:bg-red-800 cursor-pointer">
@@ -240,7 +279,7 @@ const CallbackComponent = () => {
                     </button>
                 </div>
             </div>
-
+    
             {/* Dropdown menus en haut */}
             <div className="flex flex-col md:flex-row justify-center w-full space-y-5 md:space-y-0 md:space-x-10">
                 <div id="servers" className="flex flex-col">
@@ -271,14 +310,26 @@ const CallbackComponent = () => {
                         </select>
                     </div>
                 )}
+                {genres.length > 0 && (
+                    <div id="genres" className="flex flex-col">
+                        <label className="mb-2">Choose genres</label>
+                        <Select
+                            isMulti
+                            options={genres.map(genre => ({ value: genre.key, label: genre.title }))}
+                            value={selectedGenres.map(key => genres.find(genre => genre.key === key)).filter(Boolean).map(genre => ({ value: genre.key, label: genre.title }))}
+                            onChange={handleGenreChange}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
+                        />
+                    </div>
+                )}
             </div>
-
+    
             <div className="relative place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
             </div>
-
+    
             <div className="flex flex-col md:flex-row mt-10 justify-around space-y-10 md:space-y-0">
                 {/* Roulette à gauche */}
-                <div className="relative flex justify-center items-center w-full md:w-1/3">
+                <div className="relative flex justify-center items-center w-full md:w-1/3 md:mr-10">
                     {showSpinButton && (
                         <div id="spin" className="relative">
                             <Wheel
@@ -302,9 +353,9 @@ const CallbackComponent = () => {
                         </div>
                     )}
                 </div>
-
+    
                 {/* Infos movies */}
-                <div className="flex flex-col w-full md:w-1/3">
+                <div className="flex flex-col w-full md:w-1/3 md:ml-10">
                     {selectedMovie && (
                         <div className="text-center md:text-left">
                             <h1 className="text-4xl font-bold">{selectedMovie.title}</h1>
@@ -319,7 +370,7 @@ const CallbackComponent = () => {
                         </div>
                     )}
                 </div>
-
+    
                 {/* Selected movie à droite */}
                 {selectedMovie && (
                     <div className="flex flex-col items-center w-full md:w-1/3 space-y-5">
