@@ -34,7 +34,7 @@ export default function Home() {
   const storePinAndRedirect = (pin, clientID) => {
       localStorage.setItem('plex_pin_id', pin.id);
       localStorage.setItem('plex_pin_code', pin.code);
-      const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=http://localhost:3000/callback`;
+      const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=https://plex-roulette.com/callback`;
       window.location.href = redirectUrl;
   }
 
@@ -47,7 +47,7 @@ export default function Home() {
       </div>
       <div>
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">
+          <p className="py-12 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent font-black text-4xl md:text-6xl text-center">
             Plex Roulette
           </p>
           <button className="border border-grey-500 p-3 rounded hover:bg-slate-800 cursor-pointer" onClick={() => {
