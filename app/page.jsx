@@ -47,6 +47,7 @@ export default function Home() {
       <div>
       <Head>
       <link rel="canonical" key="canonical" href="https://plex-roulette.com/" />
+      <title key="title">Plex roulette</title>
       </Head>
       </div>
       {/* Logo en haut à gauche */}
