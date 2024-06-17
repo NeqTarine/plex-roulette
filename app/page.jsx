@@ -44,9 +44,11 @@ export default function Home() {
 
   return (
     <main className="flex items-center justify-center min-h-screen flex-col p-24">
+      <div>
       <Head>
       <link rel="canonical" key="canonical" href="https://plex-roulette.com/" />
       </Head>
+      </div>
       {/* Logo en haut à gauche */}
       <div className="absolute top-0 left-10 p-4">
         <Image src={logo} alt="Logo" width={150} height={150} />

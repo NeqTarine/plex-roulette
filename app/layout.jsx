@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Plex roulette",
-  description: "Find the right film for you",
+  description: "Discover cinematic surprises on Plex: let chance choose your next movie!",
 };
 
 export default function RootLayout({ children }) {
