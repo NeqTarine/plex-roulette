@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "/public/logov2.webp";
+import logov2 from "/public/logov2.webp";
 
 
 
@@ -36,32 +36,34 @@ export default function Home() {
   const storePinAndRedirect = (pin, clientID) => {
       localStorage.setItem('plex_pin_id', pin.id);
       localStorage.setItem('plex_pin_code', pin.code);
-      {/* const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=http://localhost:3000/callback`;*/}
-     const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=https://plex-roulette.com/callback`; 
+     {/* const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=http://localhost:3000/callback`;*/}
+      const redirectUrl = `https://app.plex.tv/auth/#?clientID=${clientID}&code=${pin.code}&forwardUrl=https://plex-roulette.com/callback`; 
       window.location.href = redirectUrl;
   }
 
 
   return (
-    <main className="flex items-center justify-center min-h-screen flex-col p-24">
-      {/* Logo en haut à gauche */}
-      <div className="absolute top-0 left-10 p-4">
-        <Image src={logo} alt="Logo" width={150} height={150} />
-      </div>
-      <div>
-        <div className="flex flex-col gap-4">
-          <p className="py-12 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent font-black text-4xl md:text-6xl text-center">
-            Plex Roulette
-          </p>
-          <button className="border border-grey-500 p-3 rounded hover:bg-slate-800 cursor-pointer" onClick={() => {
+    <main className="p-4">
+        <div className="flex flex-col md:flex-row justify-around items-center w-full space-y-5 xs:space-y-2">
+            <div className="xs:py-0 lg:py-4">
+                <Image src={logov2} alt="Logo" width={150} height={150} />
+            </div>
+    
+            <h1 className="xs:py-0 md:py-12 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent font-poppins md:text-6xl xs:text-3xl text-center">
+                Plex Roulette
+            </h1>
+            <div className="xs:py-2 lg:py-10">
+            </div>
+        </div>
+        <div className="relative place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
+        </div>
+      <div className="h-96 flex items-center justify-center">
+          <button className="border border-grey-500 p-3 rounded  cursor-pointer hover:bg-[#ECB100] " onClick={() => {
             loginOnPlex();
           }}>
             Login with plex
           </button>
         </div>
-        <div className="relative place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        </div>
-      </div>
     </main>
   );
 }

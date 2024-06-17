@@ -7,7 +7,6 @@ import imdblogo from "/public/imdb.png";
 import rottenlogo from "/public/rotten.png";
 import logov2 from "/public/logov2.webp";
 
-
 const data = [
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
@@ -15,136 +14,14 @@ const data = [
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
-    { option: '0', style: { backgroundColor: '#aed6dc', textColor: '#aed6dc'} },
+    { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
-    { option: '0', style: { backgroundColor: '#aed6dc', textColor: '#aed6dc'} },
+    { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
-    { option: '0', style: { backgroundColor: '#aed6dc', textColor: '#aed6dc'} },
+    { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
+    
 ];
-
-const styles = `
-  @keyframes borderChange {
-    0% { border-color: red; }
-    25% { border-color: orange; }
-    50% { border-color: yellow; }
-    75% { border-color: green; }
-    100% { border-color: blue; }
-  }
-  .border-animation {
-    animation: borderChange 3s infinite;
-  }
-  .loader {
-    border: 4px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 4px solid #3498db;
-    width: 40px;
-    height: 40px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-    margin: auto;
-  }
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  .loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .genre-box {
-    display: inline-block;
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 0.9em;
-  }
-
-  .duration-box {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #333;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 0.9em;
-  }
-
-  .parent-container {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .parent-container > div {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .spin-button {
-    width: 100px;
-    height: 100px;
-  }
-
-  @media (max-width: 768px) {
-    .parent-container {
-        max-width: 200px;
-    }
-    .spin-button {
-        width: 50px;
-        height: 50px;
-        font-size: 0.6em;
-    }
-    .genre-box, .duration-box {
-        font-size: 0.7em;
-        padding: 3px 7px;
-        margin: 3px;
-    }
-    img {
-        width: 50%;
-    }
-    button {
-        font-size: 0.8em;
-    }
-    .text-4xl {
-        font-size: 2.5rem;
-    }
-    .text-6xl {
-        font-size: 3rem;
-    }
-    .space-y-10 > * + * {
-        margin-top: 0.5rem;
-    }
-    .space-y-5 > * + * {
-        margin-top: 0.5rem;
-    }
-    .space-x-10 > * + * {
-        margin-left: 0.5rem;
-    }
-    .space-x-5 > * + * {
-        margin-left: 0.25rem;
-    }
-  }
-`;
 
 const CallbackComponent = () => {
     const [authToken, setAuthToken] = useState(null);
@@ -408,144 +285,144 @@ const CallbackComponent = () => {
     };
 
     return (
-        <main className="p-4 font-poppins">
-            <style>{styles}</style>
-            <div className="flex flex-col md:flex-row justify-around items-center w-full space-y-5 md:space-y-0">
-                <div className="py-4">
-                    <Image src={logov2} alt="Logo" width={150} height={150} />
-                </div>
-    
-                <div className="py-12 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent font-black text-4xl md:text-6xl text-center">
-                    Plex Roulette
-                </div>
-    
-                <div className="py-10">
-                    <button onClick={handleLogout} className="border border-red-500 p-3 rounded hover:bg-red-800 cursor-pointer">
-                        Logout
-                    </button>
-                </div>
+        <main className="p-4">
+        <div className="flex flex-col md:flex-row justify-around items-center w-full space-y-5 xs:space-y-2">
+            <div className="xs:py-0 lg:py-4">
+                <Image src={logov2} alt="Logo" width={150} height={150} />
             </div>
     
-            <div className="relative place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
+            <h1 className="xs:py-0 md:py-12 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent font-poppins md:text-6xl xs:text-3xl text-center">
+                Plex Roulette
+            </h1>
+    
+            <div className="xs:py-2 lg:py-10">
+                <button onClick={handleLogout} className="border border-red-500 p-3 rounded-lg hover:bg-red-800 cursor-pointer w-36">
+                    Logout
+                </button>
             </div>
+        </div>
     
-            {loading && (
-                <div className="loading-overlay">
-                    <div className="loader"></div>
-                </div>
-            )}
+        <div className="relative place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
+        </div>
     
-            {!loading && (
-                <>
-                    <div className="flex flex-col md:flex-row justify-center w-full space-y-5 md:space-y-0 md:space-x-10">
-                        <div id="servers" className="flex flex-col">
-                            <label className="mb-2">First, chose your server</label>
-                            {servers.length > 0 ? (
-                                <Select
-                                    options={servers.map(server => ({ value: server.name, label: server.name }))}
-                                    value={selectedServer ? { value: selectedServer.name, label: selectedServer.name } : null}
-                                    onChange={handleServerChange}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
-                                />
-                            ) : (
-                                <div>Loading servers...</div>
-                            )}
-                        </div>
-                        {libraries.length > 0 && (
-                            <div id="libraries" className="flex flex-col">
-                                <label className="mb-2">Now, chose your library</label>
-                                <Select
-                                    options={libraries.map(library => ({ value: library.key, label: library.title }))}
-                                    value={selectedLibraryKey ? { value: selectedLibraryKey, label: libraries.find(lib => lib.key === selectedLibraryKey).title } : null}
-                                    onChange={handleLibraryChange}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
-                                />
-                            </div>
+        {loading && (
+            <div className="fixed inset-0 flex justify-center items-center z-50 bg-gray-900 bg-opacity-75">
+                <div className="w-10 h-10 border-4 border-gray-300 rounded-full border-t-4 border-t-blue-600 animate-spin"></div>
+            </div>
+        )}
+    
+        {!loading && (
+            <>
+                <div className="flex flex-col md:flex-row justify-center w-full space-y-5 md:space-y-0 md:space-x-10">
+                    <div id="servers" className="flex flex-col">
+                        <label className="mb-2">First, chose your server</label>
+                        {servers.length > 0 ? (
+                            <Select
+                                options={servers.map(server => ({ value: server.name, label: server.name }))}
+                                value={selectedServer ? { value: selectedServer.name, label: selectedServer.name } : null}
+                                onChange={handleServerChange}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
+                            />
+                        ) : (
+                            <div>Loading servers...</div>
                         )}
-                        {genres.length > 0 && (
-                            <div id="genres" className="flex flex-col">
-                                <label className="mb-2">Choose genres</label>
-                                <Select
-                                    isMulti
-                                    options={genres.map(genre => ({ value: genre.key, label: genre.title }))}
-                                    value={selectedGenres.map(key => genres.find(genre => genre.key === key)).filter(Boolean).map(genre => ({ value: genre.key, label: genre.title }))}
-                                    onChange={handleGenreChange}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
+                    </div>
+                    {libraries.length > 0 && (
+                        <div id="libraries" className="flex flex-col">
+                            <label className="mb-2">Now, chose your library</label>
+                            <Select
+                                options={libraries.map(library => ({ value: library.key, label: library.title }))}
+                                value={selectedLibraryKey ? { value: selectedLibraryKey, label: libraries.find(lib => lib.key === selectedLibraryKey).title } : null}
+                                onChange={handleLibraryChange}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
+                            />
+                        </div>
+                    )}
+                    {genres.length > 0 && (
+                        <div id="genres" className="flex flex-col">
+                            <label className="mb-2">Optionally, choose genres</label>
+                            <Select
+                                isMulti
+                                options={genres.map(genre => ({ value: genre.key, label: genre.title }))}
+                                value={selectedGenres.map(key => genres.find(genre => genre.key === key)).filter(Boolean).map(genre => ({ value: genre.key, label: genre.title }))}
+                                onChange={handleGenreChange}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
+                            />
+                        </div>
+                    )}
+                </div>
+    
+                <div className="flex flex-col md:flex-row mt-10 justify-around space-y-10 md:space-y-0">
+                    <div className="relative flex justify-center items-center w-full md:w-1/3 md:mr-10">
+                        {showSpinButton && (
+                            <div id="spin" className="w-full max-w-[400px] h-auto aspect-square flex justify-center items-center">
+                                <Wheel
+                                    mustStartSpinning={mustSpin}
+                                    spinDuration={0.1}
+                                    prizeNumber={prizeNumber}
+                                    data={data}
+                                    outerBorderWidth={5}
+                                    outerBorderColor="grey"
+                                    innerRadius={40}
+                                    innerBorderColor="grey"
+                                    radiusLineColor="grey"
+                                    radiusLineWidth={4}
+                                    innerBorderWidth={5}
+                                    perpendicularText={true}
+                                    onStopSpinning={handleStopSpinning}
                                 />
+                                <button className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full bg-white border-4 animate-pulse text-black flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={handleSpinClick}>
+                                    Click Here
+                                </button>
                             </div>
                         )}
                     </div>
     
-                    <div className="flex flex-col md:flex-row mt-10 justify-around space-y-10 md:space-y-0">
-                        <div className="relative flex justify-center items-center w-full md:w-1/3 md:mr-10 ">
-                            {showSpinButton && (
-                                <div id="spin" className="parent-container relative">
-                                    <Wheel
-                                        mustStartSpinning={mustSpin}
-                                        spinDuration={0.1}
-                                        prizeNumber={prizeNumber}
-                                        data={data}
-                                        outerBorderWidth={3}
-                                        outerBorderColor="grey"
-                                        innerRadius={40}
-                                        innerBorderColor="grey"
-                                        radiusLineColor="grey"
-                                        radiusLineWidth={3}
-                                        innerBorderWidth={3}
-                                        perpendicularText={true}
-                                        onStopSpinning={handleStopSpinning}
-                                    />
-                                    <button className="spin-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-4 border-animation text-black flex items-center justify-center" onClick={handleSpinClick}>
-                                        Click Here to Spin
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-    
-                        <div className="flex flex-col w-full md:w-1/3 md:ml-10">
-                            {selectedMovie && (
-                                <div className="text-center md:text-left">
-                                    <h1 className="text-4xl font-bold">{selectedMovie.title}</h1>
-                                    <div className="flex flex-wrap justify-center md:justify-start mt-4">
-                                        {selectedMovie.genres.map((genre, index) => (
-                                            <span key={index} className="genre-box">{genre}</span>
-                                        ))}
-                                    </div>
-                                    <p className="leading-relaxed mt-5">
-                                        {showFullSummary ? selectedMovie.summary : `${selectedMovie.summary.slice(0, 300)}...`}
-                                        <button onClick={toggleSummary} className="text-blue-500 ml-2">
-                                            {showFullSummary ? 'Lire moins' : 'Lire plus'}
-                                        </button>
-                                    </p>
-                                    <div className="flex flex-wrap justify-center md:justify-start mt-4">
-                                        <span className="duration-box">Year: {selectedMovie.year}</span>
-                                    </div>
-                                    <div className="flex flex-wrap justify-center md:justify-start mt-2">
-                                        <span className="duration-box">Time: {selectedMovie.duration}</span>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-    
+                    <div className="flex flex-col w-full md:w-1/3 md:ml-10">
                         {selectedMovie && (
-                            <div className="flex flex-col items-center w-full md:w-1/3 space-y-5">
-                                <img src={selectedMovie.imageObjectURL} alt={selectedMovie.title} className="max-w-full w-[300px]" />
-                                <div className="flex justify-evenly w-full">
-                                    <div className="flex items-center space-x-2">
-                                        <Image src={imdblogo} width={30} alt="imdblogo" />
-                                        <p className="leading-relaxed">{selectedMovie.audienceRating}</p>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <Image src={rottenlogo} width={30} alt="rottenlogo"/>
-                                        <p className="leading-relaxed">{selectedMovie.rating}</p>
-                                    </div>
+                            <div className="text-center md:text-left">
+                                <h1 className="text-4xl font-bold">{selectedMovie.title}</h1>
+                                <div className="flex flex-wrap justify-center md:justify-start mt-4">
+                                    {selectedMovie.genres.map((genre, index) => (
+                                        <span key={index} className="inline-block bg-gray-200 text-gray-800 px-3 py-1 rounded-lg m-1 text-sm">{genre}</span>
+                                    ))}
+                                </div>
+                                <p className="leading-relaxed mt-5">
+                                    {showFullSummary ? selectedMovie.summary : `${selectedMovie.summary.slice(0, 300)}...`}
+                                    <button onClick={toggleSummary} className="text-blue-500 ml-2">
+                                        {showFullSummary ? 'Lire moins' : 'Lire plus'}
+                                    </button>
+                                </p>
+                                <div className="flex flex-wrap justify-center md:justify-start mt-4">
+                                    <span className="inline-block bg-white bg-opacity-50 text-gray-800 px-3 py-1 rounded-lg m-1 text-sm">Year: {selectedMovie.year}</span>
+                                </div>
+                                <div className="flex flex-wrap justify-center md:justify-start mt-2">
+                                    <span className="inline-block bg-white bg-opacity-50 text-gray-800 px-3 py-1 rounded-lg m-1 text-sm">Time: {selectedMovie.duration}</span>
                                 </div>
                             </div>
                         )}
                     </div>
-                </>
-            )}
-        </main>
+    
+                    {selectedMovie && (
+                        <div className="flex flex-col items-center w-full md:w-1/3 space-y-5 ">
+                            <img src={selectedMovie.imageObjectURL} alt={selectedMovie.title} className="max-w-full w-[300px] shadow-xl rounded-lg" />
+                            <div className="flex justify-evenly w-full">
+                                <div className="flex items-center space-x-2">
+                                    <Image src={imdblogo} width={30} alt="imdblogo" />
+                                    <p className="leading-relaxed">{selectedMovie.audienceRating}</p>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <Image src={rottenlogo} width={30} alt="rottenlogo"/>
+                                    <p className="leading-relaxed">{selectedMovie.rating}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </>
+        )}
+    </main>
+    
     );
 };
 
