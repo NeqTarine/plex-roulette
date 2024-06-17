@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import logo from "/public/logov2.webp";
-import Head from 'next/head';
 
 
 
@@ -44,14 +43,6 @@ export default function Home() {
 
 
   return (
-    <div>
-        <Head>
-        <link
-          rel="canonical"
-          href="https://plex-roulette.com/"
-          key="canonical"
-        />
-      </Head>
     <main className="flex items-center justify-center min-h-screen flex-col p-24">
       {/* Logo en haut à gauche */}
       <div className="absolute top-0 left-10 p-4">
@@ -72,7 +63,6 @@ export default function Home() {
         </div>
       </div>
     </main>
-    </div>
   );
 }
 
