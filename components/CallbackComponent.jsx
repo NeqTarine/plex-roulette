@@ -532,11 +532,11 @@ const CallbackComponent = () => {
                                 <img src={selectedMovie.imageObjectURL} alt={selectedMovie.title} className="max-w-full w-[300px]" />
                                 <div className="flex justify-evenly w-full">
                                     <div className="flex items-center space-x-2">
-                                        <Image src={imdblogo} width={30} />
+                                        <Image src={imdblogo} width={30} alt="imdblogo" />
                                         <p className="leading-relaxed">{selectedMovie.audienceRating}</p>
                                     </div>
                                     <div className="flex items-center space-x-2">
-                                        <Image src={rottenlogo} width={30} />
+                                        <Image src={rottenlogo} width={30} alt="rottenlogo"/>
                                         <p className="leading-relaxed">{selectedMovie.rating}</p>
                                     </div>
                                 </div>
