@@ -11,7 +11,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <link rel="canonical" key="canonical" href="https://plex-roulette.com/" />
       <body className={inter.className}>{children}</body>
     </html>
   );
