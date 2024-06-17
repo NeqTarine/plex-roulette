@@ -2,6 +2,11 @@
 
 import Image from "next/image";
 import logo from "/public/logov2.webp";
+import { Helmet } from 'react-helmet-async';
+
+<Helmet>
+    <link rel="canonical" href={pageURL} />
+</Helmet>
 
 export default function Home() {
 
