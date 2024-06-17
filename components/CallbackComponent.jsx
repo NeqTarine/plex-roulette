@@ -7,6 +7,7 @@ import imdblogo from "/public/imdb.png";
 import rottenlogo from "/public/rotten.png";
 import logov2 from "/public/logov2.webp";
 
+
 const data = [
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
     { option: '1', style: { backgroundColor: 'white', textColor: 'white'} },
