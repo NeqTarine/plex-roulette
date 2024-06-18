@@ -6,7 +6,6 @@ import Select from 'react-select';
 import imdblogo from "/public/imdb.png";
 import rottenlogo from "/public/rotten.png";
 import logov2 from "/public/logov2.webp";
-import { v4 as uuidv4 } from 'uuid';
 
 const data = [
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
@@ -57,7 +56,7 @@ const CallbackComponent = () => {
         if (typeof window !== 'undefined') {
             const id = localStorage.getItem('plex_pin_id');
             const code = localStorage.getItem('plex_pin_code');
-            const clientIdentifier = uuidv4();
+            const clientIdentifier = "c067826f-f79c-4258-a68c-7a0fd02ad263";
             console.log('Client Identifier:', clientIdentifier);
 
             try {
