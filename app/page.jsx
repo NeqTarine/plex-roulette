@@ -2,13 +2,15 @@
 
 import Image from "next/image";
 import logov2 from "/public/logov2.webp";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
 export default function Home() {
 
   const loginOnPlex = () => {
-    const clientID = '38c35482-5611-4b25-9b17-ab5e1d3fad01';
+    const clientID = uuidv4();
+    localStorage.setItem('clientID', clientID);
     const bodyData = new URLSearchParams({
       'X-Plex-Product': 'Plex roulette',
       'strong': 'true',

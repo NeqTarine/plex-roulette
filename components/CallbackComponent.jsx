@@ -56,8 +56,7 @@ const CallbackComponent = () => {
         if (typeof window !== 'undefined') {
             const id = localStorage.getItem('plex_pin_id');
             const code = localStorage.getItem('plex_pin_code');
-            const clientIdentifier = "38c35482-5611-4b25-9b17-ab5e1d3fad01";
-            console.log('Client Identifier:', clientIdentifier);
+            const clientIdentifier = localStorage.getItem('clientID');
 
             try {
                 const response = await fetch(`https://plex.tv/api/v2/pins/${id}?code=${code}`, {
@@ -73,7 +72,6 @@ const CallbackComponent = () => {
                 }
                 const data = await response.json();
                 const token = data.authToken;
-                console.log('Token:', token);
                 
                 localStorage.setItem('plex_auth_token', token);
                 setAuthToken(token);
