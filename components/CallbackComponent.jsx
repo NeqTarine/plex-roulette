@@ -56,7 +56,7 @@ const CallbackComponent = () => {
         if (typeof window !== 'undefined') {
             const id = localStorage.getItem('plex_pin_id');
             const code = localStorage.getItem('plex_pin_code');
-            const clientIdentifier = "c067826f-f79c-4258-a68c-7a0fd02ad263";
+            const clientIdentifier = "38c35482-5611-4b25-9b17-ab5e1d3fad01";
             console.log('Client Identifier:', clientIdentifier);
 
             try {
