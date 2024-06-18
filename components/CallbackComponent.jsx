@@ -6,6 +6,7 @@ import Select from 'react-select';
 import imdblogo from "/public/imdb.png";
 import rottenlogo from "/public/rotten.png";
 import logov2 from "/public/logov2.webp";
+import { v4 as uuidv4 } from 'uuid';
 
 const data = [
     { option: '0', style: { backgroundColor: '#aed6dc', textColor: 'aed6dc'} },
@@ -56,7 +57,8 @@ const CallbackComponent = () => {
         if (typeof window !== 'undefined') {
             const id = localStorage.getItem('plex_pin_id');
             const code = localStorage.getItem('plex_pin_code');
-            const clientIdentifier = '38c35482-5611-4b25-9b17-ab5e1d3fad01';
+            const clientIdentifier = uuidv4();
+            console.log('Client Identifier:', clientIdentifier);
 
             try {
                 const response = await fetch(`https://plex.tv/api/v2/pins/${id}?code=${code}`, {
@@ -292,7 +294,7 @@ const CallbackComponent = () => {
             </div>
     
             <h1 className="xs:py-0 md:py-12 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent font-poppins md:text-6xl xs:text-3xl text-center">
-                Plex Roulette
+            TV roulette for Plex
             </h1>
     
             <div className="xs:py-2 lg:py-10">
